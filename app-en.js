@@ -1,4 +1,4 @@
-/* TikMP4 - TikTok MP4 Downloader (frontend only, no build step) */
+/* TikMP4 - TikTok MP4 Downloader (English version) */
 (function () {
   "use strict";
 
@@ -45,11 +45,11 @@
       navigator.clipboard.readText().then(function (t) {
         if (t) { urlInput.value = t.trim(); urlInput.focus(); }
       }).catch(function () {
-        showStatus("error", "تعذّر الوصول للحافظة. الصق الرابط يدوياً (Ctrl+V).");
+        showStatus("error", "Clipboard blocked. Paste manually (Ctrl+V).");
       });
     } else {
       urlInput.focus();
-      showStatus("error", "متصفحك لا يدعم اللصق التلقائي. الصق يدوياً: Ctrl+V");
+      showStatus("error", "Auto-paste not supported. Paste manually: Ctrl+V");
     }
   });
 
@@ -73,7 +73,6 @@
   });
 
   downloadBtn.addEventListener("click", function () {
-    // رابط الإعلان المباشر: يفتح مرة واحدة فقط في الجلسة مع أول ضغطة تحميل (مصدر دخل إضافي)
     try {
       if (typeof ADSTERRA_CONFIG !== "undefined" && ADSTERRA_CONFIG.directLinkSmartlink && !sessionStorage.getItem("dl_ad_shown")) {
         sessionStorage.setItem("dl_ad_shown", "1");
@@ -82,16 +81,16 @@
     } catch (e) {}
     var raw = urlInput.value || "";
     var url = cleanUrl(raw);
-    if (!url) { showStatus("error", "⚠ المرجو لصق رابط فيديو تيك توك أولاً."); urlInput.focus(); return; }
-    if (!isValidTikTokUrl(url)) { showStatus("error", "⚠ هذا الرابط لا يبدو رابط تيك توك صحيح. تأكد منه وحاول مجدداً."); return; }
+    if (!url) { showStatus("error", "Please paste a TikTok video link first."); urlInput.focus(); return; }
+    if (!isValidTikTokUrl(url)) { showStatus("error", "This does not look like a valid TikTok link."); return; }
     fetchVideo(url);
   });
 
   function fetchVideo(tiktokUrl) {
     downloadBtn.disabled = true;
-    downloadBtn.textContent = "⏳ جاري جلب الفيديو...";
+    downloadBtn.textContent = "Fetching video...";
     resultBox.hidden = true;
-    showStatus("loading", "⏳ جاري الاتصال بسيرفر التحميل، انتظر ثواني...");
+    showStatus("loading", "Contacting download server, please wait...");
     previewVideo.removeAttribute("src");
     previewVideo.load();
 
@@ -110,11 +109,11 @@
       })
       .catch(function (err) {
         console.error(err);
-        showStatus("error", "❌ تعذّر جلب الفيديو. تأكد أن الرابط صحيح والفيديو عام (ليس خاصاً)، ثم حاول مجدداً.");
+        showStatus("error", "Could not fetch the video. Make sure the link is correct and the video is public.");
       })
       .finally(function () {
         downloadBtn.disabled = false;
-        downloadBtn.textContent = "⬇ تحميل MP4";
+        downloadBtn.textContent = "Download MP4";
       });
   }
 
@@ -123,10 +122,10 @@
     var wm = d.wmplay || d.play || "";
     var music = d.music || d.music_info && d.music_info.play || "";
     var cover = d.cover || "";
-    var title = d.title || "فيديو تيك توك";
+    var title = d.title || "TikTok video";
     var authorName = (d.author && (d.author.nickname || d.author.unique_id)) || "TikTok User";
     var authorId = (d.author && d.author.unique_id) || "";
-    var duration = d.duration ? d.duration + " ثانية" : "";
+    var duration = d.duration ? d.duration + "s" : "";
 
     currentFiles.hd = hd;
     currentFiles.wm = wm;
@@ -144,13 +143,13 @@
       previewCover.hidden = false;
     }
 
-    videoTitle.textContent = title.length > 140 ? title.slice(0, 140) + "…" : title;
-    videoAuthor.textContent = "👤 " + authorName + (authorId ? " (@" + authorId + ")" : "");
+    videoTitle.textContent = title.length > 140 ? title.slice(0, 140) + "..." : title;
+    videoAuthor.textContent = authorName + (authorId ? " (@" + authorId + ")" : "");
     videoMeta.textContent = [
-      duration ? "⏱ " + duration : "",
-      d.play_count ? "▶ " + formatNum(d.play_count) + " مشاهدة" : "",
-      d.digg_count ? "❤ " + formatNum(d.digg_count) : ""
-    ].filter(Boolean).join("  •  ") || "MP4 • أعلى جودة متاحة";
+      duration ? duration : "",
+      d.play_count ? formatNum(d.play_count) + " views" : "",
+      d.digg_count ? formatNum(d.digg_count) + " likes" : ""
+    ].filter(Boolean).join("  -  ") || "MP4 - best quality available";
 
     btnNoWatermark.href = hd || "#";
     btnWatermark.href = wm || "#";
@@ -158,7 +157,7 @@
     if (!music) { btnMusic.style.display = "none"; } else { btnMusic.style.display = ""; }
 
     resultBox.hidden = false;
-    showStatus("success", "✅ تم العثور على الفيديو! اختر الجودة واضغط تحميل.");
+    showStatus("success", "Video found! Choose quality and download.");
     resultBox.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
@@ -169,12 +168,11 @@
     return String(n);
   }
 
-  // تحميل مباشر عبر Blob (يحاول تجاوز فتح تبويب جديد)
   btnForceDl.addEventListener("click", function () {
     var fileUrl = currentFiles.hd || currentFiles.wm;
     if (!fileUrl) return;
     btnForceDl.disabled = true;
-    btnForceDl.textContent = "⏳ جاري التحميل...";
+    btnForceDl.textContent = "Downloading...";
     fetch(fileUrl)
       .then(function (r) {
         if (!r.ok) throw new Error("dl");
@@ -189,13 +187,12 @@
         a.click();
         setTimeout(function () { URL.revokeObjectURL(objUrl); a.remove(); }, 4000);
         btnForceDl.disabled = false;
-        btnForceDl.textContent = "⚡ تحميل مباشر MP4";
+        btnForceDl.textContent = "Direct MP4 download";
       })
       .catch(function () {
-        // fallback: فتح في تبويب جديد
         window.open(fileUrl, "_blank", "noopener");
         btnForceDl.disabled = false;
-        btnForceDl.textContent = "⚡ تحميل مباشر MP4";
+        btnForceDl.textContent = "Direct MP4 download";
       });
   });
 
@@ -204,12 +201,12 @@
   }
 })();
 
-/* أزرار المشاركة الفيروسية */
+/* Viral share buttons */
 (function () {
   "use strict";
   try {
-    var pageUrl = "https://beraniahmed29-rgb.github.io/tikmp4/";
-    var shareText = "حمّل فيديوهات تيك توك MP4 بأعلى جودة بدون علامة مائية — مجاني 100%";
+    var pageUrl = "https://beraniahmed29-rgb.github.io/tikmp4/en.html";
+    var shareText = "Download TikTok videos in HD MP4 with no watermark - 100% free";
     function set(id, href) { var el = document.getElementById(id); if (el) el.href = href; }
     set("shareWa", "https://wa.me/?text=" + encodeURIComponent(shareText + " " + pageUrl));
     set("shareTg", "https://t.me/share/url?url=" + encodeURIComponent(pageUrl) + "&text=" + encodeURIComponent(shareText));
