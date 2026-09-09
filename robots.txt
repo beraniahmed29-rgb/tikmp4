@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: /sitemap.xml
+Sitemap: https://beraniahmed29-rgb.github.io/tikmp4/sitemap.xml
