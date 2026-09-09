@@ -16,10 +16,10 @@ var ADSTERRA_CONFIG = {
   // مثال Banner: "<script src='https://.../invoke.js'><\/script>"
   banner728x90: "",      // أعلى وأسفل الموقع (لم تنشئ وحدة Banner بعد — تبقى مخفية)
   banner300x250: "",     // وسط الموقع (لم تنشئ وحدة Banner بعد — تبقى مخفية)
-  nativeBanner: '<script async="async" data-cfasync="false" src="https://pl31253367.profitableratecpmnetwork.com/3050ad688ff26c7f3520ce2343fb1414/invoke.js"><\/script><div id="container-3050ad688ff26c7f3520ce2343fb1414"></div>', // إعلان Native قبل الأسئلة الشائعة
-  socialBar: '<script src="https://pl31253368.profitableratecpmnetwork.com/35/e8/01/35e801f9d0ae4f6f9e248d8176a5ae01.js"><\/script>', // شريط اجتماعي يظهر تلقائياً
-  popunder: '<script src="https://pl31253370.profitableratecpmnetwork.com/c7/5b/92/c75b922bacbb5f2ab18aea532d26d477.js"><\/script>', // منبثقة عند النقر بعد 3 ثوانٍ
-  directLinkSmartlink: "https://www.profitableratecpmnetwork.com/rji0frjtyd?key=09d1633926448609481681ad1b9d88e8" // رابط مباشر محفوظ (اختياري)
+  nativeBanner: '<script async="async" data-cfasync="false" src="https://pl31253904.profitableratecpmnetwork.com/1411c5176b6b2b811285c52be6193cf9/invoke.js"><\/script><div id="container-1411c5176b6b2b811285c52be6193cf9"></div>', // إعلان Native قبل الأسئلة الشائعة
+  socialBar: '<script src="https://pl31253903.profitableratecpmnetwork.com/44/ef/e6/44efe6e15169e347812fef7a194a9190.js"><\/script>', // شريط اجتماعي يظهر تلقائياً
+  popunder: '<script src="https://pl31253905.profitableratecpmnetwork.com/74/3e/18/743e18726d51ad171863d67345f1306d.js"><\/script>', // منبثقة عند النقر بعد 3 ثوانٍ
+  directLinkSmartlink: "https://www.profitableratecpmnetwork.com/nzy8zn9j?key=c4197a1a9282418d8258286bc9916413" // رابط مباشر محفوظ (اختياري)
 };
 
 (function () {
