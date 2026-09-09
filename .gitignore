@@ -1,0 +1,3 @@
+# Local-only files: keep hosting lean, never deploy these
+*.mp4
+*.zip
