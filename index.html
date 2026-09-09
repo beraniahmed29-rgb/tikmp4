@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TikMP4 | تحميل فيديوهات تيك توك MP4 بأعلى جودة بدون علامة مائية</title>
+<meta name="description" content="حمّل فيديوهات تيك توك بصيغة MP4 بأعلى جودة HD بدون علامة مائية. مجاني، سريع، بدون تسجيل، يعمل على الهاتف والكمبيوتر.">
+<meta name="keywords" content="تحميل تيك توك, tiktok downloader, تحميل فيديو تيك توك mp4, بدون علامة مائية, tik tok mp4">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="TikMP4 - تحميل فيديوهات تيك توك MP4">
+<meta property="og:description" content="حمّل أي فيديو تيك توك MP4 بأعلى جودة بدون علامة مائية مجاناً.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f0f1a">
+<link rel="stylesheet" href="style.css">
+<!-- 
+  ============================================
+  ADSTERRA - Social Bar / Popunder
+  الصق كود Social Bar أو Popunder الخاص بك من:
+  https://beta.publishers.adsterra.com/websites
+  داخل ملف ads.js (ADSTERRA_CONFIG.socialBar / popunder)
+  ============================================
+-->
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">🎬 Tik<span>MP4</span></a>
+    <nav class="nav">
+      <a href="#downloader">تحميل</a>
+      <a href="#how">طريقة الاستخدام</a>
+      <a href="#features">المميزات</a>
+      <a href="#faq">الأسئلة الشائعة</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ADSTERRA: إعلان علوي Banner 728x90 -->
+<div class="container">
+  <div id="ad-top-banner" class="ad-slot ad-leaderboard">
+    <small>مساحة إعلانية</small>
+    <!-- الصق كود Banner 728x90 من Adsterra هنا، أو ضعه في ads.js -->
+    <!-- مثال: <script src="...adsterra..."></script> -->
+  </div>
+</div>
+
+<main class="container">
+
+  <section class="hero" id="downloader">
+    <h1>تحميل فيديوهات تيك توك <span class="hl">MP4</span> بأعلى جودة</h1>
+    <p class="subtitle">بدون علامة مائية • HD • مجاني 100% • بدون تسجيل • يعمل على الموبايل والكمبيوتر</p>
+
+    <div class="dl-box">
+      <div class="input-row">
+        <input id="tiktokUrl" type="url" inputmode="url" placeholder="الصق رابط فيديو تيك توك هنا... مثال: https://www.tiktok.com/@user/video/..." autocomplete="off" dir="ltr">
+        <button id="pasteBtn" class="btn btn-ghost" type="button" title="لصق">📋 لصق</button>
+      </div>
+      <div class="btn-row">
+        <button id="downloadBtn" class="btn btn-primary" type="button">⬇ تحميل MP4</button>
+        <button id="clearBtn" class="btn btn-ghost" type="button">مسح</button>
+      </div>
+      <p class="hint">ادعم الروابط: tiktok.com / vm.tiktok.com / vt.tiktok.com</p>
+
+      <div id="status" class="status" hidden></div>
+
+      <div id="result" class="result" hidden>
+        <div class="result-media">
+          <video id="previewVideo" controls playsinline preload="metadata"></video>
+          <img id="previewCover" alt="غلاف الفيديو" hidden>
+        </div>
+        <div class="result-info">
+          <h3 id="videoTitle">عنوان الفيديو</h3>
+          <p id="videoAuthor" class="author"></p>
+          <p id="videoMeta" class="meta"></p>
+          <div class="dl-actions">
+            <a id="btnNoWatermark" class="btn btn-primary" href="#" target="_blank" rel="noopener">⬇ تحميل بدون علامة مائية (HD)</a>
+            <a id="btnWatermark" class="btn btn-secondary" href="#" target="_blank" rel="noopener">تحميل بعلامة مائية</a>
+            <a id="btnMusic" class="btn btn-secondary" href="#" target="_blank" rel="noopener">🎵 تحميل الصوت MP3</a>
+            <button id="btnForceDl" class="btn btn-ghost" type="button">⚡ تحميل مباشر MP4</button>
+          </div>
+          <button id="newBtn" class="btn btn-ghost" type="button">🔄 تحميل فيديو آخر</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADSTERRA: إعلان وسطي بعد أداة التحميل -->
+  <div id="ad-middle-banner" class="ad-slot ad-responsive">
+    <small>مساحة إعلانية</small>
+    <!-- الصق كود Native Banner أو Banner 300x250 من Adsterra هنا -->
+  </div>
+
+  <section class="grid-3" id="how">
+    <h2>طريقة تحميل فيديو تيك توك في 3 خطوات</h2>
+    <div class="cards">
+      <div class="card"><div class="step">1</div><h3>انسخ الرابط</h3><p>افتح تطبيق تيك توك، اضغط مشاركة ثم نسخ الرابط للفيديو الذي تريده.</p></div>
+      <div class="card"><div class="step">2</div><h3>الصق الرابط</h3><p>الصق الرابط في المربع بالأعلى واضغط زر تحميل MP4.</p></div>
+      <div class="card"><div class="step">3</div><h3>حمّل بأعلى جودة</h3><p>اختر بدون علامة مائية HD واحفظ الفيديو على جهازك فوراً.</p></div>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2>لماذا TikMP4؟</h2>
+    <div class="cards">
+      <div class="card"><h3>⚡ أعلى جودة HD</h3><p>نحمل الفيديو بأعلى دقة متاحة MP4 مباشرة من سيرفرات تيك توك.</p></div>
+      <div class="card"><h3>🚫 بدون علامة مائية</h3><p>احصل على نسخة نظيفة بدون لوجو تيك توك وبدون اسم المستخدم.</p></div>
+      <div class="card"><h3>📱 بدون تطبيق</h3><p>يعمل من المتصفح على أندرويد، آيفون، والكمبيوتر بدون تثبيت أي شيء.</p></div>
+      <div class="card"><h3>🔒 خصوصية تامة</h3><p>لا نخزن فيديوهاتك ولا نطلب تسجيل دخول. الروابط تُعالج لحظياً فقط.</p></div>
+      <div class="card"><h3>🎵 استخراج MP3</h3><p>حمّل الصوت فقط من أي فيديو تيك توك بصيغة MP3 عالية الجودة.</p></div>
+      <div class="card"><h3>🆓 مجاني للأبد</h3><p>تحميل غير محدود، بدون حساب، وبدون حدود يومية.</p></div>
+    </div>
+  </section>
+
+  <!-- ADSTERRA: إعلان Native قبل الأسئلة الشائعة -->
+  <div id="ad-native" class="ad-slot ad-responsive">
+    <small>مساحة إعلانية</small>
+  </div>
+
+  <section id="faq">
+    <h2>الأسئلة الشائعة</h2>
+    <details open><summary>هل تحميل فيديوهات تيك توك مجاني؟</summary><p>نعم، الموقع مجاني 100% وبدون حدود لعدد الفيديوهات.</p></details>
+    <details><summary>هل يمكن التحميل بدون علامة مائية؟</summary><p>نعم، الزر الأول يعطيك نسخة MP4 بأعلى جودة بدون علامة مائية.</p></details>
+    <details><summary>هل يعمل على الآيفون؟</summary><p>نعم. على Safari اضغط تحميل ثم مشاركة ← حفظ الفيديو في الملفات أو الصور.</p></details>
+    <details><summary>أين تُحفظ الفيديوهات؟</summary><p>في مجلد التنزيلات على الكمبيوتر، أو في الملفات / المعرض على الهاتف.</p></details>
+    <details><summary>هل أحتاج تثبيت تطبيق؟</summary><p>لا، كل شيء يعمل من المتصفح مباشرة.</p></details>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <!-- ADSTERRA: إعلان سفلي -->
+  <div class="container">
+    <div id="ad-bottom-banner" class="ad-slot ad-leaderboard">
+      <small>مساحة إعلانية</small>
+    </div>
+  </div>
+  <div class="container footer-inner">
+    <p><strong>TikMP4</strong> © 2026 - أداة مجانية لتحميل فيديوهات تيك توك للاستخدام الشخصي فقط.</p>
+    <nav>
+      <a href="privacy.html">سياسة الخصوصية</a> •
+      <a href="terms.html">شروط الاستخدام</a> •
+      <a href="dmca.html">DMCA</a> •
+      <a href="contact.html">اتصل بنا</a>
+    </nav>
+    <p class="disclaimer">غير تابع لـ TikTok / ByteDance. جميع الحقوق لأصحاب الفيديوهات الأصليين.</p>
+  </div>
+</footer>
+
+<script src="ads.js?v=7"></script>
+<script src="app.js?v=3"></script>
+</body>
+</html>
