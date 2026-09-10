@@ -158,6 +158,7 @@
 
     resultBox.hidden = false;
     showStatus("success", "Video found! Choose quality and download.");
+    try { if (window.TikMP4History) TikMP4History.push({ cover: cover, title: videoTitle.textContent, author: videoAuthor.textContent, hd: hd, wm: wm }); } catch (e) {}
     resultBox.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 

@@ -46,6 +46,7 @@
       <a href="#faq">الأسئلة الشائعة</a>
       <a href="en.html">English</a>
     </nav>
+    <button id="themeToggle" class="theme-btn" type="button" title="الوضع الليلي/النهاري">☀️</button>
   </div>
 </header>
 
@@ -96,6 +97,12 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <section id="historySection" class="history" hidden>
+    <h2>🕘 آخر تحميلاتك</h2>
+    <div id="historyList" class="history-list"></div>
+    <button id="historyClear" class="btn btn-ghost" type="button">مسح السجل</button>
   </section>
 
   <!-- ADSTERRA: إعلان وسطي بعد أداة التحميل -->
@@ -172,7 +179,10 @@
   </div>
 </footer>
 
+<button id="toTop" type="button" title="العودة للأعلى">↑</button>
 <script src="ads.js?v=9"></script>
 <script src="app.js?v=4"></script>
+<script src="ui.js?v=1"></script>
+<script src="history.js?v=1"></script>
 </body>
 </html>

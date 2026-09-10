@@ -34,6 +34,7 @@
       <a href="#faq">FAQ</a>
       <a href="index.html">العربية</a>
     </nav>
+    <button id="themeToggle" class="theme-btn" type="button" title="Dark/Light mode">☀️</button>
   </div>
 </header>
 
@@ -79,6 +80,12 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <section id="historySection" class="history" hidden>
+    <h2>🕘 Your recent downloads</h2>
+    <div id="historyList" class="history-list"></div>
+    <button id="historyClear" class="btn btn-ghost" type="button">Clear history</button>
   </section>
 
   <div id="ad-middle-banner" class="ad-slot ad-responsive"><small>Ad space</small></div>
@@ -144,7 +151,10 @@
   </div>
 </footer>
 
+<button id="toTop" type="button" title="Back to top">↑</button>
 <script src="ads.js?v=9"></script>
 <script src="app-en.js?v=1"></script>
+<script src="ui.js?v=1"></script>
+<script src="history.js?v=1"></script>
 </body>
 </html>
