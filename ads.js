@@ -87,6 +87,15 @@ var ADSTERRA_CONFIG = {
       if (ADSTERRA_CONFIG.popunder) {
         setTimeout(function () { injectScript(ADSTERRA_CONFIG.popunder); }, 3000);
       }
+      // طيّ الخانات التي بقيت فارغة بعد التحميل (وحدة محجوبة أو بلا ملء): لا فراغات قبيحة
+      setTimeout(function () {
+        ["ad-top-banner", "ad-bottom-banner", "ad-middle-banner", "ad-native"].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (!el || el.style.display === "none") return;
+          var hasAd = el.querySelector("iframe") || el.querySelector("img") || el.querySelector("ins");
+          if (!hasAd && el.offsetHeight < 40) el.style.display = "none";
+        });
+      }, 8000);
       // وضع التشخيص: افتح index.html?debug=ads لرؤية حالة الإعلانات على الصفحة
       if (/[?&]debug=ads/.test(location.search)) {
         setTimeout(function () {
