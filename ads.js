@@ -102,27 +102,12 @@ var ADSTERRA_CONFIG = {
         ["ad-bottom-banner", ADSTERRA_CONFIG.banner728x90_bottom || ADSTERRA_CONFIG.banner728x90],
         ["ad-native", ADSTERRA_CONFIG.nativeBanner || ADSTERRA_CONFIG.banner300x250]
       ]);
-      // إخفاء أي خانة إعلانية فارغة حتى لا تظهر للزوار قبل إضافة أكواد Adsterra
-      ["ad-top-banner", "ad-bottom-banner", "ad-middle-banner", "ad-native"].forEach(function (id) {
-        var el = document.getElementById(id);
-        if (el && !el.querySelector("script") && !el.querySelector("iframe") && !el.querySelector("ins")) {
-          el.style.display = "none";
-        }
-      });
+      // ملاحظة: الخانات الفارغة تبقى ظاهرة كـ "مساحة إعلانية" كما في التصميم الأصلي
       injectScript(ADSTERRA_CONFIG.socialBar);
       // Popunder يؤخر 3 ثواني حتى لا يؤثر على سرعة التحميل
       if (ADSTERRA_CONFIG.popunder) {
         setTimeout(function () { injectScript(ADSTERRA_CONFIG.popunder); }, 3000);
       }
-      // طيّ الخانات التي بقيت فارغة بعد التحميل (وحدة محجوبة أو بلا ملء): لا فراغات قبيحة
-      setTimeout(function () {
-        ["ad-top-banner", "ad-bottom-banner", "ad-middle-banner", "ad-native"].forEach(function (id) {
-          var el = document.getElementById(id);
-          if (!el || el.style.display === "none") return;
-          var hasAd = el.querySelector("iframe") || el.querySelector("img") || el.querySelector("ins");
-          if (!hasAd && el.offsetHeight < 40) el.style.display = "none";
-        });
-      }, 8000);
       // وضع التشخيص: افتح index.html?debug=ads لرؤية حالة الإعلانات على الصفحة
       if (/[?&]debug=ads/.test(location.search)) {
         setTimeout(function () {

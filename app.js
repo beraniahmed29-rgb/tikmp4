@@ -73,13 +73,6 @@
   });
 
   downloadBtn.addEventListener("click", function () {
-    // رابط الإعلان المباشر: يفتح مرة واحدة فقط في الجلسة مع أول ضغطة تحميل (مصدر دخل إضافي)
-    try {
-      if (typeof ADSTERRA_CONFIG !== "undefined" && ADSTERRA_CONFIG.directLinkSmartlink && !sessionStorage.getItem("dl_ad_shown")) {
-        sessionStorage.setItem("dl_ad_shown", "1");
-        window.open(ADSTERRA_CONFIG.directLinkSmartlink, "_blank", "noopener");
-      }
-    } catch (e) {}
     var raw = urlInput.value || "";
     var url = cleanUrl(raw);
     if (!url) { showStatus("error", "⚠ المرجو لصق رابط فيديو تيك توك أولاً."); urlInput.focus(); return; }
@@ -159,7 +152,6 @@
 
     resultBox.hidden = false;
     showStatus("success", "✅ تم العثور على الفيديو! اختر الجودة واضغط تحميل.");
-    try { if (window.TikMP4History) TikMP4History.push({ cover: cover, title: videoTitle.textContent, author: videoAuthor.textContent, hd: hd, wm: wm }); } catch (e) {}
     resultBox.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
@@ -203,25 +195,4 @@
   function sanitizeName(s) {
     return String(s || "tiktok-video").replace(/[\\/:*?"<>|]/g, "").slice(0, 60) || "tiktok-video";
   }
-})();
-
-/* أزرار المشاركة الفيروسية */
-(function () {
-  "use strict";
-  try {
-    var pageUrl = "https://beraniahmed29-rgb.github.io/tikmp4/";
-    var shareText = "حمّل فيديوهات تيك توك MP4 بأعلى جودة بدون علامة مائية — مجاني 100%";
-    function set(id, href) { var el = document.getElementById(id); if (el) el.href = href; }
-    set("shareWa", "https://wa.me/?text=" + encodeURIComponent(shareText + " " + pageUrl));
-    set("shareTg", "https://t.me/share/url?url=" + encodeURIComponent(pageUrl) + "&text=" + encodeURIComponent(shareText));
-    set("shareFb", "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl));
-    set("shareX", "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl));
-    var nativeBtn = document.getElementById("shareNative");
-    if (nativeBtn) {
-      if (!navigator.share) { nativeBtn.style.display = "none"; }
-      nativeBtn.addEventListener("click", function () {
-        if (navigator.share) { navigator.share({ title: "TikMP4", text: shareText, url: pageUrl }).catch(function () {}); }
-      });
-    }
-  } catch (e) {}
 })();
