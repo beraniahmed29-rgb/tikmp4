@@ -73,6 +73,13 @@
   });
 
   downloadBtn.addEventListener("click", function () {
+    // الرابط الإعلاني المباشر: يفتح مرة واحدة في الجلسة مع ضغطة زر التحميل فقط
+    try {
+      if (typeof ADSTERRA_CONFIG !== "undefined" && ADSTERRA_CONFIG.directLinkSmartlink && !sessionStorage.getItem("dl_ad_shown")) {
+        sessionStorage.setItem("dl_ad_shown", "1");
+        window.open(ADSTERRA_CONFIG.directLinkSmartlink, "_blank", "noopener");
+      }
+    } catch (e) {}
     var raw = urlInput.value || "";
     var url = cleanUrl(raw);
     if (!url) { showStatus("error", "⚠ المرجو لصق رابط فيديو تيك توك أولاً."); urlInput.focus(); return; }
