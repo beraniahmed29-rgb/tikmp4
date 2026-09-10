@@ -71,10 +71,37 @@ var ADSTERRA_CONFIG = {
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-      var hasTop = injectHTML("ad-top-banner", ADSTERRA_CONFIG.banner728x90);
-      var hasBottom = injectHTML("ad-bottom-banner", ADSTERRA_CONFIG.banner728x90_bottom || ADSTERRA_CONFIG.banner728x90);
-      var hasMiddle = injectHTML("ad-middle-banner", ADSTERRA_CONFIG.banner300x250 || ADSTERRA_CONFIG.nativeBanner);
-      var hasNative = injectHTML("ad-native", ADSTERRA_CONFIG.nativeBanner || ADSTERRA_CONFIG.banner300x250);
+      // تحميل البانرات بالتتابع: سكريبت Adsterra يستهلك atOptions ثم يحذفه،
+      // فيجب انتظار استهلاك كل خانة قبل حقن التي تليها وإلا قرأت كلها آخر مفتاح
+      function injectBannerChain(items) {
+        var i = 0;
+        function next() {
+          if (i >= items.length) return;
+          var slotId = items[i][0], html = items[i][1];
+          i++;
+          if (!html) { next(); return; }
+          injectHTML(slotId, html);
+          if (!/atOptions/.test(html)) { next(); return; }
+          var waited = 0;
+          var timer = setInterval(function () {
+            waited += 120;
+            var consumed = true;
+            try { consumed = (typeof window.atOptions === "undefined"); } catch (e) {}
+            if (consumed || waited >= 6000) {
+              clearInterval(timer);
+              try { delete window.atOptions; } catch (e) { try { window.atOptions = undefined; } catch (e2) {} }
+              next();
+            }
+          }, 120);
+        }
+        next();
+      }
+      injectBannerChain([
+        ["ad-top-banner", ADSTERRA_CONFIG.banner728x90],
+        ["ad-middle-banner", ADSTERRA_CONFIG.banner300x250 || ADSTERRA_CONFIG.nativeBanner],
+        ["ad-bottom-banner", ADSTERRA_CONFIG.banner728x90_bottom || ADSTERRA_CONFIG.banner728x90],
+        ["ad-native", ADSTERRA_CONFIG.nativeBanner || ADSTERRA_CONFIG.banner300x250]
+      ]);
       // إخفاء أي خانة إعلانية فارغة حتى لا تظهر للزوار قبل إضافة أكواد Adsterra
       ["ad-top-banner", "ad-bottom-banner", "ad-middle-banner", "ad-native"].forEach(function (id) {
         var el = document.getElementById(id);
