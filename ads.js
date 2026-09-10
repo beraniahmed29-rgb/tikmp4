@@ -19,7 +19,7 @@ var ADSTERRA_CONFIG = {
   banner300x250: '<script>atOptions={"key":"d2ca658790a59d0d0428b0e267f1e8f0","format":"iframe","height":250,"width":300,"params":{}};<\/script><script src="https://www.highrevenueformat.com/d2ca658790a59d0d0428b0e267f1e8f0/invoke.js"><\/script>', // بانر وسط الموقع
   nativeBanner: '<script async="async" data-cfasync="false" src="https://pl31253904.profitableratecpmnetwork.com/1411c5176b6b2b811285c52be6193cf9/invoke.js"><\/script><div id="container-1411c5176b6b2b811285c52be6193cf9"></div>', // إعلان Native قبل الأسئلة الشائعة
   socialBar: '<script src="https://pl31253905.profitableratecpmnetwork.com/74/3e/18/743e18726d51ad171863d67345f1306d.js"><\/script>', // شريط اجتماعي (يُنشئ إعلاناً مرئياً)
-  popunder: '<script src="https://pl31253903.profitableratecpmnetwork.com/44/ef/e6/44efe6e15169e347812fef7a194a9190.js"><\/script>', // منبثقة عند النقر بعد 3 ثوانٍ
+  popunder: "", // معطّل بطلبك: لا إعلان عند النقر العشوائي (أرسل الكود لإعادة تفعيله)
   directLinkSmartlink: "https://www.profitableratecpmnetwork.com/nzy8zn9j?key=c4197a1a9282418d8258286bc9916413" // رابط مباشر محفوظ (اختياري)
 };
 
