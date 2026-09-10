@@ -10,8 +10,9 @@
     var tBtn = document.getElementById("themeToggle");
     function paintBtn() {
       if (!tBtn) return;
-      tBtn.textContent = root.getAttribute("data-theme") === "light" ? "🌙" : "☀️";
-      tBtn.title = root.getAttribute("data-theme") === "light" ? "Dark mode" : "Light mode";
+      var light = root.getAttribute("data-theme") === "light";
+      tBtn.innerHTML = '<svg class="ic" aria-hidden="true"><use href="icons.svg?v=1#' + (light ? "i-moon" : "i-sun") + '"></use></svg>';
+      tBtn.title = light ? "Dark mode" : "Light mode";
     }
     paintBtn();
     if (tBtn) tBtn.addEventListener("click", function () {
@@ -31,5 +32,31 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
+
+    // Copy download link button (reads the HD link already resolved on page)
+    var copyBtn = document.getElementById("copyLinkBtn");
+    if (copyBtn) copyBtn.addEventListener("click", function () {
+      var a = document.getElementById("btnNoWatermark");
+      var link = a && a.href && a.href !== "#" ? a.href : "";
+      var box = document.getElementById("status");
+      function note(type, msg) {
+        if (!box) return;
+        box.hidden = false;
+        box.className = "status " + type;
+        box.textContent = msg;
+      }
+      if (!link) { note("error", document.documentElement.lang === "en" ? "No link yet." : "لا يوجد رابط بعد."); return; }
+      function done() { note("success", document.documentElement.lang === "en" ? "Link copied!" : "تم نسخ الرابط!"); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(done, function () { note("error", link); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) { note("error", link); }
+        ta.remove();
+      }
+    });
   } catch (e) {}
 })();
