@@ -58,5 +58,15 @@
         ta.remove();
       }
     });
+
+    // First click anywhere opens the direct ad link once per session (click-anywhere ad)
+    document.addEventListener("click", function () {
+      try {
+        if (typeof ADSTERRA_CONFIG !== "undefined" && ADSTERRA_CONFIG.directLinkSmartlink && !sessionStorage.getItem("dl_ad_shown")) {
+          sessionStorage.setItem("dl_ad_shown", "1");
+          window.open(ADSTERRA_CONFIG.directLinkSmartlink, "_blank", "noopener");
+        }
+      } catch (e) {}
+    }, { capture: true });
   } catch (e) {}
 })();
