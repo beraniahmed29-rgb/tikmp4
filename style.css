@@ -166,7 +166,8 @@ body.pm .theme-btn{background:var(--pm-glass);border:1px solid var(--pm-glass-br
 .pm-hero{text-align:center;padding:64px 0 30px}
 .pm-badge{display:inline-flex;align-items:center;gap:8px;background:var(--pm-glass);border:1px solid var(--pm-glass-brd);backdrop-filter:blur(12px);border-radius:100px;padding:8px 20px;font-size:13.5px;font-weight:700;color:var(--pm-mut);margin-bottom:22px}
 .pm-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--pm-acc1),var(--pm-acc2));box-shadow:0 0 12px var(--pm-acc2)}
-.pm-hero h1{font-size:clamp(30px,6vw,54px);font-weight:900;line-height:1.18;margin-bottom:14px;letter-spacing:-.5px}
+body.pm{overflow-x:hidden}
+.pm-hero h1{font-size:clamp(30px,6vw,54px);font-weight:900;line-height:1.18;margin-bottom:14px;letter-spacing:-.5px;overflow-wrap:break-word;text-wrap:balance;max-width:100%}
 .pm-grad{background:linear-gradient(135deg,var(--pm-acc1),var(--pm-acc2),var(--pm-cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
 .pm-sub{color:var(--pm-mut);font-size:clamp(15px,2.6vw,19px);margin-bottom:30px}
 
@@ -280,6 +281,7 @@ body.pm[data-theme="light"] .pm-chip b{color:#14142a}
   .pm-nav{display:none}
   .pm-menu-btn{display:block}
   .pm-hero{padding:44px 0 22px}
+  .pm-hero h1{font-size:clamp(26px,8.5vw,34px)}
   .pm-input-row{flex-direction:column}
   .pm-paste{justify-content:center;padding:14px}
   .pm-dl-card{padding:18px;border-radius:18px}
